@@ -1,6 +1,7 @@
 /* jshint esversion: 6,node: true,-W041: false */
 "use strict";
 const darksky = require("./apis/darksky").DarkSkyAPI,
+      	pirateweather = require("./apis/pirateweather").PirateWeatherAPI,
 	weatherunderground = require("./apis/weatherunderground").WundergroundAPI,
 	openweathermap = require("./apis/openweathermap").OpenWeatherMapAPI,
       	weewx = require("./apis/weewx").WeewxAPI,
@@ -68,6 +69,10 @@ function WeatherPlusPlatform(_log, _config)
 			case "darksky":
 				this.log.info("Adding station with weather service Dark Sky named '" + config.nameNow + "'");
 				this.stations.push(new darksky(config.key, config.language, config.locationGeo || config.locationId, config.conditionDetail, this.log));
+				break;
+			case "pirateweather":
+				this.log.info("Adding station with weather service Pirate Weather named '" + config.nameNow + "'");
+				this.stations.push(new pirateweather(config.key, config.language, config.locationGeo || config.locationId, config.conditionDetail, this.log));
 				break;
 			case "weatherunderground":
 				this.log.info("Adding station with weather service Weather Underground named '" + config.nameNow + "'");
